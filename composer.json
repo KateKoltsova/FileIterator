@@ -1,0 +1,19 @@
+{
+    "name": "koltsova/file-iterator",
+    "description": "File Iterator project",
+    "type": "project",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Koltsova\\FileIterator\\": "src/"
+        }
+    },
+    "authors": [
+        {
+            "name": "Kate Koltsova",
+            "email": "kate.petronyuk@gmail.com"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {}
+}
