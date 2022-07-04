@@ -12,22 +12,20 @@ class FileIterator implements \Iterator
     public function __construct($file)
     {
         if (!file_exists($file)) {
-            throw new \Exception('File ' . $this->file . ' is not found');
-            die();
-        } else {
-            $this->file = $file;
+            throw new \Exception('File is not found!');
         }
+        $this->file = $file;
+        $this->openedFile = fopen($this->file, 'r');
+    }
+
+    public function __destruct()
+    {
+        fclose($this->openedFile);
     }
 
     public function current()
     {
-        $this->lineValue = fgets($this->openedFile);
-        if (mb_strlen($this->lineValue) > 1) {
-            $result = 'Line ' . $this->line . ' consist ' . $this->lineValue;
-        } else {
-            $result = 'Line ' . $this->line . " is empty!\r\n";
-        }
-        return $result;
+        return $this->lineValue = fgets($this->openedFile);
     }
 
     public function next()
@@ -42,17 +40,12 @@ class FileIterator implements \Iterator
 
     public function valid()
     {
-        if (feof($this->openedFile)) {
-            fclose($this->openedFile);
-            return false;
-        } else {
-            return true;
-        }
+        return !feof($this->openedFile);
     }
 
     public function rewind()
     {
-        $this->openedFile = fopen($this->file, 'r');
+        rewind($this->openedFile);
         $this->line = 1;
     }
 }

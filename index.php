@@ -13,10 +13,5 @@ try {
 }
 
 foreach ($text as $line) {
-//    if (mb_strlen($line) <= 1) {
-//        continue;
-//    } else {
     print_r($line);
-//    }
 }
-
